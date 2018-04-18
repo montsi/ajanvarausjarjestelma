@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);
+  padding: 15px;
+  color: white;
+}
+
+.App-title {
+  font-size: 2.5em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.container {
+  margin-top: 20px;
+}

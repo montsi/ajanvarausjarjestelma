@@ -1,0 +1,29 @@
+table {
+  font-family:sans-serif;
+  background-color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 0;
+  border-collapse: separate;
+  table-layout: fixed;
+/*margin-bottom: 50px;*/
+}
+thead tr th {
+  background: lightgrey;
+  color: black;
+  padding: 0.5em;
+  overflow: hidden;
+}
+                
+tbody td {
+  text-align: center;
+  vertical-align: middle;
+  border: 0.5px solid black;
+  position: relative;
+  height: 32px;
+  cursor: pointer;
+}
+span{
+  display: block;
+}

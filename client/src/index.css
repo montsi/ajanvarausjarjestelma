@@ -1,0 +1,65 @@
+body{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+.formBox{
+	margin-top: -50px;
+	padding: 50px;
+}
+.formBox  h1{
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	margin-bottom: 50px;
+	font-size: 48px;
+}
+.inputBox{
+	position: relative;
+	box-sizing: border-box;
+	margin-bottom: 50px;
+}
+.inputBox .inputText{
+	position: absolute;
+    font-size: 24px;
+    line-height: 50px;
+    transition: .5s;
+    opacity: .5;
+}
+.inputBox .input{
+	position: relative;
+	width: 100%;
+	height: 50px;
+	background: transparent;
+	border: none;
+    outline: none;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(0,0,0,.5);
+
+}
+
+textarea{
+	height: 100px !important;
+}
+.button{
+	width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    background: #03A9F4;
+    color: #fff;
+    cursor: pointer;
+}
+
+.p {
+    font-size: 20px;
+    opacity: .5;
+    margin-top: -4%;
+    margin-left: 1%;
+}
+
+#takaisin {
+    margin-right: 100%;
+    margin-top: 2%;
+    padding: 9px;
+}
