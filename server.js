@@ -11,7 +11,7 @@ const mysql = require("mysql");
 const connection = mysql.createConnection({
     host: 'mysql.labranet.jamk.fi',
     user: 'L4784',
-    password: 'zd3hFKBcjeaebSpYj5IaZfrn8Tmzi2Kd',
+    password: '*****',
     database: 'L4784_3'
 });
 
