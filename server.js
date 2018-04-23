@@ -4,7 +4,7 @@ const formidable = require('express-formidable');
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
 const mysql = require("mysql");
@@ -14,7 +14,11 @@ const connection = mysql.createConnection({
     password: 'zd3hFKBcjeaebSpYj5IaZfrn8Tmzi2Kd',
     database: 'L4784_3'
 });
+app.use(express.static(__dirname + 'public'));
 
+app.get("/", (req, res) => {
+    res.render("index");
+} )
 
 //Hakee kaikki hoidot
 app.get('/api/hoidot', (req, res) => {
