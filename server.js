@@ -4,25 +4,35 @@ const formidable = require('express-formidable');
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(process.env.PORT || 5000);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
 
 const mysql = require("mysql");
+<<<<<<< HEAD
+const pool = mysql.createPool({
+    connectionLimit : 30,
+    host: 'eu-cdbr-west-02.cleardb.net',
+    user: 'be51cde8b60b52',
+    password: 'f2e7d590',
+    database: 'heroku_1921cd23e58fe90'
+=======
 const connection = mysql.createConnection({
     host: 'mysql.labranet.jamk.fi',
     user: 'L4784',
-    password: 'zd3hFKBcjeaebSpYj5IaZfrn8Tmzi2Kd',
+    password: '*****',
     database: 'L4784_3'
+>>>>>>> 4ac2d2b1b16403137aaea510317c7eed87044053
 });
-app.use(express.static(__dirname + 'public'));
 
-app.get("/", (req, res) => {
-    res.render("index");
-} )
+pool.on('error', function() {});
 
 //Hakee kaikki hoidot
 app.get('/api/hoidot', (req, res) => {
-    connection.query('SELECT * from L4784_3.HOITO', function(err, rows, fields) {
+    pool.query('SELECT * from HOITO', function(err, rows, fields) {
         if (!err) {
             res.send(JSON.stringify(rows));
         } else {
@@ -35,7 +45,7 @@ app.get('/api/hoidot', (req, res) => {
 app.post('/api/tyontekijat', function(req, res) {  {/* Hakee valitun hoidon perusteella mahdolliset työntekijät*/}                                     
     const hoito = req.body.hoito;
     console.log(hoito);
-    connection.query('SELECT * from L4784_3.TYONTEKIJA WHERE hoidot LIKE ?',["%" + hoito + "%"], function(err, rows, fields) {
+    pool.query('SELECT * from TYONTEKIJA WHERE hoidot LIKE ?',["%" + hoito + "%"], function(err, rows, fields) {
         if (!err) {
             res.send(JSON.stringify(rows));
             console.log(rows);  
@@ -56,7 +66,7 @@ app.post('/api/varaus',formidable(), function(req, res) {
     const aika = req.fields.aika;
     
     
-    connection.query('INSERT INTO ASIAKAS (asiakkaan_nimi,puhelinnumero,sahkoposti) VALUES (?,?,?)', [nimi,puhelinnumero,sahkoposti], function(err, rows, fields) {
+    pool.query('INSERT INTO ASIAKAS (asiakkaan_nimi,puhelinnumero,sahkoposti) VALUES (?,?,?)', [nimi,puhelinnumero,sahkoposti], function(err, rows, fields) {
         if (!err) {
             console.log(this.sql);
         } else {
@@ -64,7 +74,7 @@ app.post('/api/varaus',formidable(), function(req, res) {
         }
     })
     
-        connection.query('INSERT INTO AJANVARAUS (hoitoID,Aika,hoidon_tekija,asiakas) VALUES (?,?,?,LAST_INSERT_ID())', [hoitoID,aika,tyontekijaID], function(err, rows, fields) {
+        pool.query('INSERT INTO AJANVARAUS (hoitoID,Aika,hoidon_tekija,asiakas) VALUES (?,?,?,LAST_INSERT_ID())', [hoitoID,aika,tyontekijaID], function(err, rows, fields) {
         if (!err) {
             console.log(this.sql);
         } else {
