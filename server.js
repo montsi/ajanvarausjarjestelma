@@ -12,20 +12,12 @@ if (process.env.NODE_ENV === 'production') {
 
 
 const mysql = require("mysql");
-<<<<<<< HEAD
 const pool = mysql.createPool({
     connectionLimit : 30,
     host: 'eu-cdbr-west-02.cleardb.net',
     user: 'be51cde8b60b52',
     password: 'f2e7d590',
     database: 'heroku_1921cd23e58fe90'
-=======
-const connection = mysql.createConnection({
-    host: 'mysql.labranet.jamk.fi',
-    user: 'L4784',
-    password: '*****',
-    database: 'L4784_3'
->>>>>>> 4ac2d2b1b16403137aaea510317c7eed87044053
 });
 
 pool.on('error', function() {});
